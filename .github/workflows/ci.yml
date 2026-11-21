@@ -6,6 +6,10 @@ name: ci
 
 on:
   push:
+    branches:
+      - "**"
+    tags:
+      - "v*"
   pull_request:
 
 env:
@@ -147,7 +151,8 @@ jobs:
           path: dist/*.whl
 
   publish:
-    if: startsWith(github.ref, 'refs/tags/v')
+    name: Publication PyPI
+    if: github.event_name == 'push' && startsWith(github.ref, 'refs/tags/v')
     needs: [python, wheels]
     runs-on: ubuntu-latest
     environment: pypi
@@ -159,4 +164,16 @@ jobs:
           pattern: wheel-*
           path: dist
           merge-multiple: true
-      - uses: pypa/gh-action-pypi-publish@release/v1
+
+      - name: Vérification des versions
+        run: |
+          expected="${GITHUB_REF_NAME#v}"
+          for wheel in dist/*.whl; do
+            [[ "$wheel" == *"-${expected}-"* ]] || {
+              echo "Version incorrecte : $wheel (attendu : $expected)"
+              exit 1
+            }
+          done
+
+      - name: Publication PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
