@@ -1,0 +1,122 @@
+[
+ {
+  "size": 5,
+  "a": {
+   "algorithm": "uct",
+   "simulations": 1,
+   "label": "uct-1"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1,
+   "label": "uct-1"
+  },
+  "games": 2000,
+  "wins_a": 1159,
+  "rate_a": 0.5795,
+  "ci_low": 0.557733506058135,
+  "ci_high": 0.6009616834241458,
+  "p_value_greater": 6.103291754945582e-13,
+  "p_value_two_sided": 1.2206583509891164e-12,
+  "first_player_wins": 1159,
+  "seconds": 0.16453641799989782,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 4005
+ },
+ {
+  "size": 7,
+  "a": {
+   "algorithm": "uct",
+   "simulations": 1,
+   "label": "uct-1"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1,
+   "label": "uct-1"
+  },
+  "games": 2000,
+  "wins_a": 1068,
+  "rate_a": 0.534,
+  "ci_low": 0.5120933469522744,
+  "ci_high": 0.5557762938326005,
+  "p_value_greater": 0.0012650682263223123,
+  "p_value_two_sided": 0.0025301364526446246,
+  "first_player_wins": 1068,
+  "seconds": 0.34033736099991074,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 4007
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "uct",
+   "simulations": 1,
+   "label": "uct-1"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1,
+   "label": "uct-1"
+  },
+  "games": 2000,
+  "wins_a": 1093,
+  "rate_a": 0.5465,
+  "ci_low": 0.524613503534277,
+  "ci_high": 0.5682082110685663,
+  "p_value_greater": 1.7402301617035344e-05,
+  "p_value_two_sided": 3.480460323407069e-05,
+  "first_player_wins": 1093,
+  "seconds": 0.4692491330001758,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 4009
+ },
+ {
+  "size": 11,
+  "a": {
+   "algorithm": "uct",
+   "simulations": 1,
+   "label": "uct-1"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1,
+   "label": "uct-1"
+  },
+  "games": 2000,
+  "wins_a": 1018,
+  "rate_a": 0.509,
+  "ci_low": 0.4870942373249985,
+  "ci_high": 0.530871255823939,
+  "p_value_greater": 0.21692775102273137,
+  "p_value_two_sided": 0.43385550204546275,
+  "first_player_wins": 1018,
+  "seconds": 0.6789858619999904,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 40011
+ },
+ {
+  "size": 14,
+  "a": {
+   "algorithm": "uct",
+   "simulations": 1,
+   "label": "uct-1"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1,
+   "label": "uct-1"
+  },
+  "games": 2000,
+  "wins_a": 1007,
+  "rate_a": 0.5035,
+  "ci_low": 0.48160177641921836,
+  "ci_high": 0.5253848042498127,
+  "p_value_greater": 0.38564889895687304,
+  "p_value_two_sided": 0.7712977979137461,
+  "first_player_wins": 1007,
+  "seconds": 1.4979124479996244,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 40014
+ }
+]

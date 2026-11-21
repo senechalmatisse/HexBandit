@@ -1,0 +1,27 @@
+[
+ {
+  "size": 7,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000,
+   "exploration": 0.25,
+   "label": "uct-1000-c0.25"
+  },
+  "games": 1000,
+  "wins_a": 957,
+  "rate_a": 0.957,
+  "ci_low": 0.942580996155916,
+  "ci_high": 0.9679213465882865,
+  "p_value_greater": 6.470444058617775e-226,
+  "p_value_two_sided": 1.294088811723555e-225,
+  "first_player_wins": 495,
+  "seconds": 17.250976146999847,
+  "seating": "alternate_first",
+  "master_seed": 9107
+ }
+]

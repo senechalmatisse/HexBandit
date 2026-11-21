@@ -1,0 +1,70 @@
+[build-system]
+requires = ["setuptools>=75"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "hexbandit"
+version = "1.0.1"
+description = "Hex, MCTS et MC-RAVE. Campagnes, statistiques et visualisation."
+readme = "README.md"
+requires-python = ">=3.11"
+license = "MIT"
+# Planchers minimaux compatibles avec Python 3.11 (Debian 12, Ubuntu 24.04...).
+# Les versions de reference restent celles de la CI ;
+# dans un environnement neuf, pip installe les plus recentes compatibles avec l'interpreteur.
+dependencies = [
+    "numpy>=1.26",
+    "pandas>=2.2",
+    "scipy>=1.12",
+    "matplotlib>=3.8",
+    "pydantic>=2.6",
+]
+
+[project.optional-dependencies]
+# Stockage Parquet (sinon CSV) et contre-vérification de la régression logistique.
+parquet = ["pyarrow>=15"]
+crosscheck = ["statsmodels>=0.14"]
+dev = [
+    "pytest>=8.0",
+    "ruff>=0.5",
+    "mypy>=1.10",
+]
+
+[project.scripts]
+hexbandit = "hexbandit.cli.main:main"
+
+[tool.setuptools.packages.find]
+include = ["hexbandit*"]
+
+[tool.setuptools.package-data]
+hexbandit = ["py.typed", "_lib/*", "viz/web/*.html"]
+
+[tool.mypy]
+# Pas de python_version : mypy suit l'interpreteur qui l'execute (les stubs de
+# numpy >= 2.5 utilisent la syntaxe `type` de Python 3.12).
+strict = true
+warn_unreachable = true
+files = ["hexbandit", "tests"]
+
+[[tool.mypy.overrides]]
+module = ["pandas.*", "scipy.*", "imageio.*", "pyarrow.*", "statsmodels.*"]
+ignore_missing_imports = true
+
+[tool.ruff]
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "N", "UP", "B", "SIM", "RUF"]
+# E501 : la longueur du code est geree par `ruff format` ; restent des chaines
+# du rapport en francais. N818 : noms d'exceptions du domaine (Cancelled,
+# SearchFailed, NativeLibraryNotFound) gardes pour la lisibilite.
+ignore = ["E501", "N818"]
+# Typographie francaise et mathematique voulue dans les textes et docstrings.
+allowed-confusables = ["×", "-", "’", "-", "α", "γ", "σ"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = [
+    "native: nécessite la bibliothèque native compilée",
+    "slow: test long",
+]

@@ -1,0 +1,356 @@
+[
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "prior": {
+    "kind": "hex"
+   },
+   "label": "rave-1000-prior=hex"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 579,
+  "rate_a": 0.579,
+  "ci_low": 0.5481543035657991,
+  "ci_high": 0.6092410685934831,
+  "p_value_greater": 3.268307279984506e-07,
+  "p_value_two_sided": 6.536614559969012e-07,
+  "first_player_wins": 533,
+  "seconds": 76.53834667,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "grave_ref": 5,
+   "label": "rave-1000-grave=5"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 525,
+  "rate_a": 0.525,
+  "ci_low": 0.49401247046123636,
+  "ci_high": 0.555796191614486,
+  "p_value_greater": 0.06060713290551859,
+  "p_value_two_sided": 0.12121426581103718,
+  "first_player_wins": 577,
+  "seconds": 30.100180048,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "grave_ref": 10,
+   "label": "rave-1000-grave=10"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 541,
+  "rate_a": 0.541,
+  "ci_low": 0.5100164673887266,
+  "ci_high": 0.5716697384154579,
+  "p_value_greater": 0.005194065783077882,
+  "p_value_two_sided": 0.010388131566155765,
+  "first_player_wins": 549,
+  "seconds": 31.949941526000003,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "grave_ref": 25,
+   "label": "rave-1000-grave=25"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 551,
+  "rate_a": 0.551,
+  "ci_low": 0.5200351373690727,
+  "ci_high": 0.5815745332654009,
+  "p_value_greater": 0.0006958707972110504,
+  "p_value_two_sided": 0.001391741594422101,
+  "first_player_wins": 557,
+  "seconds": 33.23932578600002,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "grave_ref": 50,
+   "label": "rave-1000-grave=50"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 575,
+  "rate_a": 0.575,
+  "ci_low": 0.5441311933323346,
+  "ci_high": 0.6052947928948321,
+  "p_value_greater": 1.1781465823560014e-06,
+  "p_value_two_sided": 2.3562931647120027e-06,
+  "first_player_wins": 557,
+  "seconds": 34.483708920000026,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "grave_ref": 100,
+   "label": "rave-1000-grave=100"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 533,
+  "rate_a": 0.533,
+  "ci_low": 0.5020104989134991,
+  "ci_high": 0.5637369350264544,
+  "p_value_greater": 0.0198896401074706,
+  "p_value_two_sided": 0.0397792802149412,
+  "first_player_wins": 589,
+  "seconds": 35.917487532999985,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "grave_ref": 200,
+   "label": "rave-1000-grave=200"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 553,
+  "rate_a": 0.553,
+  "ci_low": 0.5220403713020199,
+  "ci_high": 0.5835539922985113,
+  "p_value_greater": 0.0004449929823846506,
+  "p_value_two_sided": 0.0008899859647693012,
+  "first_player_wins": 597,
+  "seconds": 36.93579206800001,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "solver": true,
+   "label": "rave-1000-solver"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 527,
+  "rate_a": 0.527,
+  "ci_low": 0.4960112345098614,
+  "ci_high": 0.5577821205319188,
+  "p_value_greater": 0.046843645737748234,
+  "p_value_two_sided": 0.09368729147549647,
+  "first_player_wins": 575,
+  "seconds": 29.34517114600004,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "reuse_tree": true,
+   "label": "rave-1000-reuse"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 518,
+  "rate_a": 0.518,
+  "ci_low": 0.48702069136344844,
+  "ci_high": 0.5488415453310715,
+  "p_value_greater": 0.13418634992955486,
+  "p_value_two_sided": 0.2683726998591097,
+  "first_player_wins": 578,
+  "seconds": 28.987911149000013,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "trees": 2,
+   "label": "rave-1000-trees=2"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 418,
+  "rate_a": 0.418,
+  "ci_low": 0.3878005681433438,
+  "ci_high": 0.4488270202482872,
+  "p_value_greater": 0.9999999149118765,
+  "p_value_two_sided": 2.3966577182388755e-07,
+  "first_player_wins": 602,
+  "seconds": 32.187872389999995,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "final_move": "secure",
+   "label": "rave-1000-final=secure"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 512,
+  "rate_a": 0.512,
+  "ci_low": 0.4810325544060909,
+  "ci_high": 0.5428756033902558,
+  "p_value_greater": 0.23352256082639353,
+  "p_value_two_sided": 0.46704512165278705,
+  "first_player_wins": 576,
+  "seconds": 28.892915808999987,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "final_move": "max_robust",
+   "label": "rave-1000-final=max_robust"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 434,
+  "rate_a": 0.434,
+  "ci_low": 0.40359177593584417,
+  "ci_high": 0.4649133561842491,
+  "p_value_greater": 0.9999873281106098,
+  "p_value_two_sided": 3.351030790892144e-05,
+  "first_player_wins": 576,
+  "seconds": 27.65368421200003,
+  "seating": "alternate_first",
+  "master_seed": 9001
+ },
+ {
+  "size": 14,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "prior": {
+    "kind": "hex"
+   },
+   "label": "rave-1000-prior=hex"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 539,
+  "rate_a": 0.539,
+  "ci_low": 0.5080142294521902,
+  "ci_high": 0.5696872833859367,
+  "p_value_greater": 0.007426246613584334,
+  "p_value_two_sided": 0.014852493227168667,
+  "first_player_wins": 525,
+  "seconds": 402.784366882,
+  "seating": "alternate_first",
+  "master_seed": 9014
+ },
+ {
+  "size": 14,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "reuse_tree": true,
+   "label": "rave-1000-reuse"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "label": "rave-1000"
+  },
+  "games": 1000,
+  "wins_a": 523,
+  "rate_a": 0.523,
+  "ci_low": 0.4920142012545935,
+  "ci_high": 0.553809767855071,
+  "p_value_greater": 0.07734685323997867,
+  "p_value_two_sided": 0.15469370647995734,
+  "first_player_wins": 527,
+  "seconds": 136.62113041200007,
+  "seating": "alternate_first",
+  "master_seed": 9014
+ }
+]

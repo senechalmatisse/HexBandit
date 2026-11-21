@@ -1,0 +1,18 @@
+Banc (cargo bench -p mcts), 21 novembre 2026, machine de developpement
+(VM Linux x86-64, 2 coeurs), machine au repos, Rust 1.97.0.
+
+Plateau 14x14, 30000 simulations depuis la position vide, médiane sur 5 essais
+Recherche : moteur chaud (après une recherche d'échauffement, comme criterion) ;
+« froid » = première recherche d'un moteur neuf, allocation de l'arbre comprise.
+-- simulations seules (sans arbre) --
+remplissage, sans trace                  867121 simulations/s   (Bleu gagne 50.0 %)
+remplissage, trace exacte (RAVE)         417814 simulations/s   (Bleu gagne 49.9 %)
+uniforme coup par coup                   159121 simulations/s   (Bleu gagne 50.1 %)
+-- recherche complète --
+UCT + remplissage                        479964 sim/s  (froid  484430)  profondeur moyenne 3.0, max 4, 30001 nœuds
+UCT + uniforme                           101803 sim/s  (froid  121024)  profondeur moyenne 3.0, max 4, 30001 nœuds
+MC-RAVE (éq. 47) + remplissage           134303 sim/s  (froid  137838)  profondeur moyenne 5.5, max 10, 30001 nœuds
+MC-RAVE (éq. 47) + uniforme               79685 sim/s  (froid   80976)  profondeur moyenne 5.4, max 10, 30001 nœuds
+MC-RAVE (éq. 19) + remplissage           125193 sim/s  (froid  108342)  profondeur moyenne 7.6, max 14, 30001 nœuds
+UCT     :                                479964 simulations/s (moteur chaud) -> objectif [S] 300 000 atteint
+MC-RAVE :                                134303 simulations/s (moteur chaud) -> objectif [M] 100 000 atteint

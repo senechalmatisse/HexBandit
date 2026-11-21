@@ -1,0 +1,98 @@
+[
+ {
+  "size": 3,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "games": 60,
+  "wins_a": 1,
+  "rate_a": 0.016666666666666666,
+  "ci_low": 0.0029481597947862495,
+  "ci_high": 0.08855129727590061,
+  "p_value_greater": 1.0,
+  "p_value_two_sided": 1.0581813203458523e-16,
+  "first_player_wins": 1,
+  "seconds": 2.770279741000195,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 5003
+ },
+ {
+  "size": 4,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "games": 60,
+  "wins_a": 57,
+  "rate_a": 0.95,
+  "ci_low": 0.8629948352365147,
+  "ci_high": 0.9828504978356043,
+  "p_value_greater": 3.1269258016219936e-14,
+  "p_value_two_sided": 6.253851603243987e-14,
+  "first_player_wins": 57,
+  "seconds": 12.412109738999789,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 5004
+ },
+ {
+  "size": 5,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "games": 60,
+  "wins_a": 3,
+  "rate_a": 0.05,
+  "ci_low": 0.01714950216439568,
+  "ci_high": 0.1370051647634852,
+  "p_value_greater": 0.9999999999999984,
+  "p_value_two_sided": 6.253851603243987e-14,
+  "first_player_wins": 3,
+  "seconds": 29.483577138999408,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 5005
+ },
+ {
+  "size": 6,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "games": 60,
+  "wins_a": 46,
+  "rate_a": 0.7666666666666667,
+  "ci_low": 0.6456372962239805,
+  "ci_high": 0.8556043826335717,
+  "p_value_greater": 2.1118522811339885e-05,
+  "p_value_two_sided": 4.223704562267977e-05,
+  "first_player_wins": 46,
+  "seconds": 56.105314262999855,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 5006
+ }
+]

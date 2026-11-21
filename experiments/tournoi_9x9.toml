@@ -1,0 +1,40 @@
+# Tournoi toutes rondes en 9 x 9, 1 000 simulations par coup : UCT, MC-RAVE et les options, seules puis réunies.
+# python -m hexbandit tournament ../experiments/tournoi_9x9.toml --out ../results/tournoi_9x9
+
+[tournament]
+name = "options-v2-9x9"
+size = 9
+games_per_pair = 200
+master_seed = 20261121
+threads = 2
+
+[players.uct]
+algorithm = "uct"
+simulations = 1000
+exploration = 0.25
+
+[players.rave]
+algorithm = "rave"
+simulations = 1000
+
+[players.rave_prior]
+algorithm = "rave"
+simulations = 1000
+prior = { kind = "hex" }
+
+[players.grave50]
+algorithm = "rave"
+simulations = 1000
+grave_ref = 50
+
+[players.rave_solver]
+algorithm = "rave"
+simulations = 1000
+solver = true
+
+[players.combine]
+algorithm = "rave"
+simulations = 1000
+prior = { kind = "hex" }
+grave_ref = 50
+solver = true

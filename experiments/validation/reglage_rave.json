@@ -1,0 +1,538 @@
+[
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.0
+   },
+   "label": "rave-mse-b0"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000
+  },
+  "games": 100,
+  "wins_a": 100,
+  "rate_a": 1.0,
+  "ci_low": 0.9630065017930143,
+  "ci_high": 1.0,
+  "p_value_greater": 7.888609052210118e-31,
+  "p_value_two_sided": 1.5777218104420236e-30,
+  "first_player_wins": 50,
+  "seconds": 1.874161938999805,
+  "seating": "alternate_first",
+  "master_seed": 2026
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.02
+   },
+   "label": "rave-mse-b0.02"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000
+  },
+  "games": 100,
+  "wins_a": 100,
+  "rate_a": 1.0,
+  "ci_low": 0.9630065017930143,
+  "ci_high": 1.0,
+  "p_value_greater": 7.888609052210118e-31,
+  "p_value_two_sided": 1.5777218104420236e-30,
+  "first_player_wins": 50,
+  "seconds": 2.0005033299999013,
+  "seating": "alternate_first",
+  "master_seed": 2026
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.05
+   },
+   "label": "rave-mse-b0.05"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000
+  },
+  "games": 100,
+  "wins_a": 100,
+  "rate_a": 1.0,
+  "ci_low": 0.9630065017930143,
+  "ci_high": 1.0,
+  "p_value_greater": 7.888609052210118e-31,
+  "p_value_two_sided": 1.5777218104420236e-30,
+  "first_player_wins": 50,
+  "seconds": 2.0389121489997706,
+  "seating": "alternate_first",
+  "master_seed": 2026
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.1
+   },
+   "label": "rave-mse-b0.1"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000
+  },
+  "games": 100,
+  "wins_a": 100,
+  "rate_a": 1.0,
+  "ci_low": 0.9630065017930143,
+  "ci_high": 1.0,
+  "p_value_greater": 7.888609052210118e-31,
+  "p_value_two_sided": 1.5777218104420236e-30,
+  "first_player_wins": 50,
+  "seconds": 2.1459042659998886,
+  "seating": "alternate_first",
+  "master_seed": 2026
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.3
+   },
+   "label": "rave-mse-b0.3"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000
+  },
+  "games": 100,
+  "wins_a": 94,
+  "rate_a": 0.94,
+  "ci_low": 0.8752318455410406,
+  "ci_high": 0.9722138760368118,
+  "p_value_greater": 1.0029797609618065e-21,
+  "p_value_two_sided": 2.005959521923613e-21,
+  "first_player_wins": 52,
+  "seconds": 2.6131756240001778,
+  "seating": "alternate_first",
+  "master_seed": 2026
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 100.0
+   },
+   "label": "rave-manual-k100"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000
+  },
+  "games": 100,
+  "wins_a": 94,
+  "rate_a": 0.94,
+  "ci_low": 0.8752318455410406,
+  "ci_high": 0.9722138760368118,
+  "p_value_greater": 1.0029797609618065e-21,
+  "p_value_two_sided": 2.005959521923613e-21,
+  "first_player_wins": 46,
+  "seconds": 2.6449112699997386,
+  "seating": "alternate_first",
+  "master_seed": 2026
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 1000.0
+   },
+   "label": "rave-manual-k1000"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000
+  },
+  "games": 100,
+  "wins_a": 100,
+  "rate_a": 1.0,
+  "ci_low": 0.9630065017930143,
+  "ci_high": 1.0,
+  "p_value_greater": 7.888609052210118e-31,
+  "p_value_two_sided": 1.5777218104420236e-30,
+  "first_player_wins": 50,
+  "seconds": 2.174711008000031,
+  "seating": "alternate_first",
+  "master_seed": 2026
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 10000.0
+   },
+   "label": "rave-manual-k10000"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000
+  },
+  "games": 100,
+  "wins_a": 100,
+  "rate_a": 1.0,
+  "ci_low": 0.9630065017930143,
+  "ci_high": 1.0,
+  "p_value_greater": 7.888609052210118e-31,
+  "p_value_two_sided": 1.5777218104420236e-30,
+  "first_player_wins": 50,
+  "seconds": 1.7942907859996922,
+  "seating": "alternate_first",
+  "master_seed": 2026
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.0
+   },
+   "label": "rave-mse-b0"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 1000.0
+   },
+   "label": "ref-k1000"
+  },
+  "games": 200,
+  "wins_a": 108,
+  "rate_a": 0.54,
+  "ci_low": 0.4708228918895333,
+  "ci_high": 0.6076694820002854,
+  "p_value_greater": 0.14441024858738316,
+  "p_value_two_sided": 0.2888204971747663,
+  "first_player_wins": 110,
+  "seconds": 7.06692094500022,
+  "seating": "alternate_first",
+  "master_seed": 77
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.02
+   },
+   "label": "rave-mse-b0.02"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 1000.0
+   },
+   "label": "ref-k1000"
+  },
+  "games": 200,
+  "wins_a": 121,
+  "rate_a": 0.605,
+  "ci_low": 0.5358834915928536,
+  "ci_high": 0.6701589898679203,
+  "p_value_greater": 0.0018174739762649693,
+  "p_value_two_sided": 0.0036349479525299385,
+  "first_player_wins": 123,
+  "seconds": 6.734089512000082,
+  "seating": "alternate_first",
+  "master_seed": 77
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.05
+   },
+   "label": "rave-mse-b0.05"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 1000.0
+   },
+   "label": "ref-k1000"
+  },
+  "games": 200,
+  "wins_a": 113,
+  "rate_a": 0.565,
+  "ci_low": 0.49570736259794607,
+  "ci_high": 0.6318427449730093,
+  "p_value_greater": 0.03841881606563018,
+  "p_value_two_sided": 0.07683763213126037,
+  "first_player_wins": 117,
+  "seconds": 7.286529231999793,
+  "seating": "alternate_first",
+  "master_seed": 77
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.1
+   },
+   "label": "rave-mse-b0.1"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 1000.0
+   },
+   "label": "ref-k1000"
+  },
+  "games": 200,
+  "wins_a": 103,
+  "rate_a": 0.515,
+  "ci_low": 0.44610849192745716,
+  "ci_high": 0.5833261482812249,
+  "p_value_greater": 0.36188551315640355,
+  "p_value_two_sided": 0.7237710263128071,
+  "first_player_wins": 125,
+  "seconds": 7.30889821899973,
+  "seating": "alternate_first",
+  "master_seed": 77
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.2
+   },
+   "label": "rave-mse-b0.2"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 1000.0
+   },
+   "label": "ref-k1000"
+  },
+  "games": 200,
+  "wins_a": 53,
+  "rate_a": 0.265,
+  "ci_low": 0.2086815414710911,
+  "ci_high": 0.3301757619262242,
+  "p_value_greater": 0.9999999999963693,
+  "p_value_two_sided": 2.0554776988442582e-11,
+  "first_player_wins": 107,
+  "seconds": 7.222233496999706,
+  "seating": "alternate_first",
+  "master_seed": 77
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 300.0
+   },
+   "label": "rave-manual-k300"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 1000.0
+   },
+   "label": "ref-k1000"
+  },
+  "games": 200,
+  "wins_a": 47,
+  "rate_a": 0.235,
+  "ci_low": 0.18157433415232588,
+  "ci_high": 0.29841368882762537,
+  "p_value_greater": 0.9999999999999959,
+  "p_value_two_sided": 2.7087202681654102e-14,
+  "first_player_wins": 109,
+  "seconds": 7.205485067000154,
+  "seating": "alternate_first",
+  "master_seed": 77
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 3000.0
+   },
+   "label": "rave-manual-k3000"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 1000.0
+   },
+   "label": "ref-k1000"
+  },
+  "games": 200,
+  "wins_a": 122,
+  "rate_a": 0.61,
+  "ci_low": 0.5409374595716976,
+  "ci_high": 0.6749165686253038,
+  "p_value_greater": 0.0011397192509028649,
+  "p_value_two_sided": 0.0022794385018057297,
+  "first_player_wins": 112,
+  "seconds": 6.885092816999986,
+  "seating": "alternate_first",
+  "master_seed": 77
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.02
+   },
+   "label": "rave-b0.02"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 1000,
+   "beta": {
+    "schedule": "manual",
+    "k": 3000.0
+   },
+   "label": "rave-k3000"
+  },
+  "games": 200,
+  "wins_a": 107,
+  "rate_a": 0.535,
+  "ci_low": 0.4658664687236316,
+  "ci_high": 0.6028143584299599,
+  "p_value_greater": 0.1790015453122511,
+  "p_value_two_sided": 0.3580030906245022,
+  "first_player_wins": 113,
+  "seconds": 6.526318737999645,
+  "seating": "alternate_first",
+  "master_seed": 82
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 256,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.02
+   },
+   "label": "rave256-b0.02"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 256,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.05
+   },
+   "label": "rave256-b0.05"
+  },
+  "games": 200,
+  "wins_a": 103,
+  "rate_a": 0.515,
+  "ci_low": 0.44610849192745716,
+  "ci_high": 0.5833261482812249,
+  "p_value_greater": 0.36188551315640355,
+  "p_value_two_sided": 0.7237710263128071,
+  "first_player_wins": 119,
+  "seconds": 1.735878853000031,
+  "seating": "alternate_first",
+  "master_seed": 83
+ },
+ {
+  "size": 13,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 2048,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.02
+   },
+   "label": "rave2048-b0.02"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 2048,
+   "beta": {
+    "schedule": "mse",
+    "bias": 0.05
+   },
+   "label": "rave2048-b0.05"
+  },
+  "games": 100,
+  "wins_a": 56,
+  "rate_a": 0.56,
+  "ci_low": 0.4622810465167699,
+  "ci_high": 0.6532797336983921,
+  "p_value_greater": 0.1356265120369177,
+  "p_value_two_sided": 0.2712530240738354,
+  "first_player_wins": 54,
+  "seconds": 25.66654848899998,
+  "seating": "alternate_first",
+  "master_seed": 84
+ }
+]

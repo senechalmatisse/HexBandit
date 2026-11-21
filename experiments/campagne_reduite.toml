@@ -1,0 +1,45 @@
+# Plan réduit (réduction si le coût dépasse le plafond), dimensionné pour environ une heure sur 2 cœurs.
+# Mêmes facteurs que le plan complet, moins de parties par cellule ; B0 = 2048 limité aux petites tailles.
+
+[campaign]
+name = "budget-ratio-reduite"
+master_seed = 20261115
+games_per_cell = 400
+chunk_size = 100
+threads = 2
+max_cost_simulations = 4.0e9
+fill_factor = 0.4
+throughput = 250000
+
+[plan]
+sizes = [5, 7, 9, 11, 14]
+ratio_exponents = [-4, -3, -2, -1, 0, 1, 2, 3, 4]
+base_budgets = [256, 2048]
+algorithms = ["uct", "rave"]
+
+[players.uct]
+algorithm = "uct"
+exploration = 0.25
+
+[players.rave]
+algorithm = "rave"
+beta = { schedule = "mse", bias = 0.02 }
+
+# B0 = 2048 : 200 parties par cellule pour N <= 11 (N = 11 ajouté en
+# extension, la première exécution ayant été plus rapide que prévu).
+[[reductions]]
+sizes = [5, 7, 9, 11]
+base_budgets = [2048]
+games_per_cell = 200
+
+# B0 = 2048 : non joué pour N = 14 (coût).
+[[reductions]]
+sizes = [14]
+base_budgets = [2048]
+skip = true
+
+# N = 14 : 300 parties par cellule.
+[[reductions]]
+sizes = [14]
+base_budgets = [256]
+games_per_cell = 300

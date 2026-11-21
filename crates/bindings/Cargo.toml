@@ -1,0 +1,23 @@
+[package]
+name = "bindings"
+description = "Facade native de hexbandit : configurations JSON validees, registre, ABI C"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[lib]
+# Bibliotheque partagee chargee par Python (ctypes) : libhexbandit_native.{so,dylib}
+# ou hexbandit_native.dll. La bibliotheque Rust (rlib) sert aux tests.
+name = "hexbandit_native"
+crate-type = ["cdylib", "rlib"]
+
+[lints]
+workspace = true
+
+[dependencies]
+game-core.workspace = true
+game-hex.workspace = true
+game-quarto.workspace = true
+game-chameleon.workspace = true
+mcts.workspace = true

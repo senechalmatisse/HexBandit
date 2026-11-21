@@ -1,0 +1,46 @@
+[workspace]
+resolver = "3"
+members = [
+    "crates/game-core",
+    "crates/game-hex",
+    "crates/game-quarto",
+    "crates/game-chameleon",
+    "crates/mcts",
+    "crates/bindings",
+]
+
+[workspace.package]
+version = "1.0.0"
+edition = "2024"
+rust-version = "1.85"
+license = "MIT OR Apache-2.0"
+# Pas de champ description ici : chaque crate a la sienne, et Cargo >= 1.100
+# signale les champs de workspace.package qu'aucun membre n'herite
+# (cargo::unused_workspace_package_fields).
+
+# Aucune dependance externe : l'environnement de developpement n'avait pas
+# acces a crates.io (voir docs/adr/0002-dependances-hors-ligne.md).
+[workspace.dependencies]
+game-core = { path = "crates/game-core" }
+game-hex = { path = "crates/game-hex" }
+game-quarto = { path = "crates/game-quarto" }
+game-chameleon = { path = "crates/game-chameleon" }
+mcts = { path = "crates/mcts" }
+
+[workspace.lints.rust]
+missing_docs = "warn"
+unreachable_pub = "warn"
+
+[workspace.lints.clippy]
+all = { level = "warn", priority = -1 }
+
+[profile.release]
+codegen-units = 1
+lto = "fat"
+opt-level = 3
+
+[profile.bench]
+inherits = "release"
+
+[profile.test]
+opt-level = 2

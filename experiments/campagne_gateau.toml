@@ -1,0 +1,35 @@
+# Campagne : même question que la campagne réduite, avec la règle du gâteau.
+# Le joueur A (budget r·B0) pose la première pierre ; B (B0) peut l'échanger au coup suivant.
+# Si l'échange neutralise l'avantage du trait, P(A gagne) devrait valoir 0,5 à r = 1 et r* devrait valoir 1.
+# Mêmes tailles d'échantillon que la partie B0 = 256 de la campagne réduite
+# (comparaison directe) ; graine maître distincte de celle des campagnes sans échange.
+
+[campaign]
+name = "budget-ratio-gateau"
+master_seed = 20261121
+games_per_cell = 400
+chunk_size = 100
+threads = 2
+max_cost_simulations = 4.0e9
+fill_factor = 0.4
+throughput = 250000
+swap = true
+
+[plan]
+sizes = [5, 7, 9, 11, 14]
+ratio_exponents = [-4, -3, -2, -1, 0, 1, 2, 3, 4]
+base_budgets = [256]
+algorithms = ["uct", "rave"]
+
+[players.uct]
+algorithm = "uct"
+exploration = 0.25
+
+[players.rave]
+algorithm = "rave"
+beta = { schedule = "mse", bias = 0.02 }
+
+# N = 14 : 300 parties par cellule, comme la campagne réduite.
+[[reductions]]
+sizes = [14]
+games_per_cell = 300

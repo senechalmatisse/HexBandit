@@ -1,0 +1,16 @@
+[package]
+name = "game-quarto"
+description = "Quarto : variante [C] demontrant la genericite du moteur (coups composes, nuls, sans AMAF)"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+game-core.workspace = true
+
+[dev-dependencies]
+mcts.workspace = true

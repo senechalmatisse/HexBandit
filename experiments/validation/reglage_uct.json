@@ -1,0 +1,155 @@
+[
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "uct",
+   "simulations": 1000,
+   "exploration": 0.25,
+   "label": "uct-c0.25"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000,
+   "label": "uct-c1.414"
+  },
+  "games": 200,
+  "wins_a": 175,
+  "rate_a": 0.875,
+  "ci_low": 0.8219857499741765,
+  "ci_high": 0.9138802552428735,
+  "p_value_greater": 3.2757389230972456e-29,
+  "p_value_two_sided": 6.551477846194491e-29,
+  "first_player_wins": 105,
+  "seconds": 3.4809252810000544,
+  "seating": "alternate_first",
+  "master_seed": 78
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "uct",
+   "simulations": 1000,
+   "exploration": 0.5,
+   "label": "uct-c0.5"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000,
+   "label": "uct-c1.414"
+  },
+  "games": 200,
+  "wins_a": 153,
+  "rate_a": 0.765,
+  "ci_low": 0.7015863111723746,
+  "ci_high": 0.8184256658476741,
+  "p_value_greater": 1.3543601340827051e-14,
+  "p_value_two_sided": 2.7087202681654102e-14,
+  "first_player_wins": 103,
+  "seconds": 3.9856129960003273,
+  "seating": "alternate_first",
+  "master_seed": 78
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "uct",
+   "simulations": 1000,
+   "exploration": 1.0,
+   "label": "uct-c1.0"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000,
+   "label": "uct-c1.414"
+  },
+  "games": 200,
+  "wins_a": 117,
+  "rate_a": 0.585,
+  "ci_low": 0.5157391490134403,
+  "ci_high": 0.6510571455024242,
+  "p_value_greater": 0.009698472270169182,
+  "p_value_two_sided": 0.019396944540338364,
+  "first_player_wins": 103,
+  "seconds": 4.139056651999908,
+  "seating": "alternate_first",
+  "master_seed": 78
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "uct",
+   "simulations": 1000,
+   "exploration": 0.1,
+   "label": "uct-c0.1"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 1000,
+   "exploration": 0.25,
+   "label": "uct-c0.25"
+  },
+  "games": 200,
+  "wins_a": 82,
+  "rate_a": 0.41,
+  "ci_low": 0.34415674908482885,
+  "ci_high": 0.4792354096630791,
+  "p_value_greater": 0.9956387493762764,
+  "p_value_two_sided": 0.013130355940531569,
+  "first_player_wins": 122,
+  "seconds": 3.7315400459997363,
+  "seating": "alternate_first",
+  "master_seed": 79
+ },
+ {
+  "size": 9,
+  "a": {
+   "algorithm": "uct",
+   "simulations": 256,
+   "exploration": 0.25,
+   "label": "uct256-c0.25"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 256,
+   "exploration": 0.5,
+   "label": "uct256-c0.5"
+  },
+  "games": 200,
+  "wins_a": 133,
+  "rate_a": 0.665,
+  "ci_low": 0.5970219120796653,
+  "ci_high": 0.7267591302158368,
+  "p_value_greater": 1.7735890870653155e-06,
+  "p_value_two_sided": 3.547178174130631e-06,
+  "first_player_wins": 95,
+  "seconds": 1.2105361190001531,
+  "seating": "alternate_first",
+  "master_seed": 80
+ },
+ {
+  "size": 11,
+  "a": {
+   "algorithm": "uct",
+   "simulations": 2048,
+   "exploration": 0.25,
+   "label": "uct2048-c0.25"
+  },
+  "b": {
+   "algorithm": "uct",
+   "simulations": 2048,
+   "exploration": 0.5,
+   "label": "uct2048-c0.5"
+  },
+  "games": 100,
+  "wins_a": 71,
+  "rate_a": 0.71,
+  "ci_low": 0.6146110882442888,
+  "ci_high": 0.7898516425087772,
+  "p_value_greater": 1.6080007647833168e-05,
+  "p_value_two_sided": 3.2160015295666335e-05,
+  "first_player_wins": 61,
+  "seconds": 8.233064753000235,
+  "seating": "alternate_first",
+  "master_seed": 81
+ }
+]

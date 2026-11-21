@@ -1,0 +1,8 @@
+rave 5x5 : echange 139/400 (35%) ; premier joueur gagnant 0.502 ; apres echange 35/139 ; 20 ouvertures differentes, les plus jouees [('b4', 51), ('a5', 43), ('c3', 40)]
+rave 7x7 : echange 74/400 (18%) ;  premier joueur gagnant 0.517 ; apres echange 30/74 ;  43 ouvertures differentes, les plus jouees [('c5', 28), ('e4', 28), ('d4', 26)]
+rave 9x9 : echange 30/200 (15%) ;  premier joueur gagnant 0.545 ; apres echange 10/30 ;  63 ouvertures differentes, les plus jouees [('b8', 9),  ('f5', 9),  ('d5', 8)]
+rave 14x14 : echange 3/100 (3%) ;  premier joueur gagnant 0.510 ; apres echange 1/3 ;    78 ouvertures differentes, les plus jouees [('j4', 3),  ('e7', 3),  ('c9', 3)]
+uct 5x5 : echange 164/400 (41%) ;  premier joueur gagnant 0.482 ; apres echange 56/164 ; 25 ouvertures differentes, les plus jouees [('b4', 35), ('d2', 34), ('c3', 30)]
+uct 7x7 : echange 52/400 (13%) ;   premier joueur gagnant 0.532 ; apres echange 27/52 ;  49 ouvertures differentes, les plus jouees [('d4', 19), ('e3', 16), ('a7', 15)]
+uct 9x9 : echange 5/200 (2%) ;     premier joueur gagnant 0.530 ; apres echange 2/5 ;    75 ouvertures differentes, les plus jouees [('f5', 8),  ('f7', 7),  ('h3', 6)]
+uct 14x14 : echange 0/100 (0%) ;   premier joueur gagnant 0.520 ; apres echange 0/0 ;    78 ouvertures differentes, les plus jouees [('a11', 3), ('b7', 3),  ('g11', 3)]

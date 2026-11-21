@@ -1,0 +1,13 @@
+[package]
+name = "game-hex"
+description = "Regles du Hex : plateau en losange, union-find, notation, rendu ASCII"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+game-core.workspace = true

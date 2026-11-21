@@ -1,0 +1,26 @@
+# Plan factoriel complet : 180 cellules de 1 000 parties. Coût estimé de l'ordre de 10^11 simulations.
+
+[campaign]
+name = "budget-ratio-complete"
+master_seed = 20261115
+games_per_cell = 1000
+chunk_size = 100
+threads = 2
+max_cost_simulations = 2.0e11
+fill_factor = 0.4
+throughput = 250000
+
+[plan]
+sizes = [5, 7, 9, 11, 14]
+ratio_exponents = [-4, -3, -2, -1, 0, 1, 2, 3, 4]
+base_budgets = [256, 2048]
+algorithms = ["uct", "rave"]
+
+# Réglages issus de experiments/validation (ADR 0005).
+[players.uct]
+algorithm = "uct"
+exploration = 0.25
+
+[players.rave]
+algorithm = "rave"
+beta = { schedule = "mse", bias = 0.02 }

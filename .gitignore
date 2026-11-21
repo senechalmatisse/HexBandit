@@ -1,0 +1,13 @@
+/target/
+**/__pycache__/
+*.pyc
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+python/hexbandit/_lib/
+*.egg-info/
+/results/
+/build/
+/dist/
+.venv/
+/demo/

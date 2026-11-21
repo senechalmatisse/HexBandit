@@ -1,0 +1,20 @@
+[package]
+name = "mcts"
+description = "Recherche arborescente de Monte-Carlo generique : UCT et MC-RAVE"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+license.workspace = true
+
+[lints]
+workspace = true
+
+[dependencies]
+game-core.workspace = true
+
+[dev-dependencies]
+game-hex.workspace = true
+
+[[bench]]
+name = "throughput"
+harness = false

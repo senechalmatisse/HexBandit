@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>hexbandit · visionneuse de parties</title>
+<style>
+  :root {
+    --surface: #fcfcfb; --panel: #f4f3ef; --ink: #0b0b0b; --ink2: #52514e; --muted: #898781;
+    --grid: #e1e0d9; --edge: #c3c2b7; --blue: #2a78d6; --red: #e34948; --empty: #f0efec;
+    --accent: #1baf7a;
+  }
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--surface); color: var(--ink);
+         font: 14px/1.45 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+  header { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; padding: 12px 18px;
+           border-bottom: 1px solid var(--grid); }
+  header h1 { font-size: 16px; margin: 0 12px 0 0; font-weight: 650; letter-spacing: .01em; }
+  header .meta { color: var(--ink2); font-size: 13px; }
+  main { display: grid; grid-template-columns: minmax(320px, 1fr) 360px; gap: 18px; padding: 14px 18px; }
+  @media (max-width: 900px) { main { grid-template-columns: 1fr; } }
+  #board-wrap { background: var(--surface); border: 1px solid var(--grid); border-radius: 10px; padding: 8px; }
+  svg { width: 100%; height: auto; display: block; touch-action: manipulation; }
+  .panel { background: var(--panel); border-radius: 10px; padding: 12px 14px; margin-bottom: 12px; }
+  .panel h2 { font-size: 13px; text-transform: uppercase; letter-spacing: .06em; color: var(--ink2);
+              margin: 0 0 8px; font-weight: 600; }
+  .controls { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; margin: 10px 2px 0; }
+  button, select { font: inherit; border: 1px solid var(--edge); background: #fff; color: var(--ink);
+                   border-radius: 7px; padding: 5px 10px; cursor: pointer; }
+  button:hover { border-color: var(--ink2); }
+  button.on { background: var(--ink); color: #fff; border-color: var(--ink); }
+  input[type=range] { flex: 1 1 160px; accent-color: var(--ink); }
+  #ply { min-width: 92px; text-align: center; font-variant-numeric: tabular-nums; color: var(--ink2); }
+  table { width: 100%; border-collapse: collapse; font-variant-numeric: tabular-nums; font-size: 12.5px; }
+  th, td { text-align: right; padding: 3px 4px; border-bottom: 1px solid var(--grid); }
+  th:first-child, td:first-child { text-align: left; }
+  th { color: var(--ink2); font-weight: 600; }
+  tr.played td { font-weight: 650; }
+  tr:hover td { background: #fff; }
+  .kv { display: grid; grid-template-columns: auto 1fr; gap: 2px 10px; font-size: 13px; }
+  .kv span:nth-child(odd) { color: var(--ink2); }
+  .tag { display: inline-block; padding: 0 6px; border-radius: 5px; font-size: 12px; color: #fff; }
+  .tag.win { background: var(--accent); } .tag.loss { background: var(--red); } .tag.draw { background: var(--muted); }
+  #drop { border: 2px dashed var(--edge); border-radius: 10px; padding: 28px; text-align: center; color: var(--ink2); }
+  #drop.over { border-color: var(--ink); color: var(--ink); }
+  #tip { position: fixed; pointer-events: none; background: var(--ink); color: #fff; font-size: 12px;
+         padding: 5px 8px; border-radius: 6px; display: none; white-space: pre; z-index: 5; }
+  .legend { display: flex; align-items: center; gap: 8px; font-size: 12px; color: var(--ink2); margin-top: 6px; }
+  .ramp { flex: 1; height: 8px; border-radius: 4px;
+          background: linear-gradient(90deg, #eef7f3, #8fd6b9, #1baf7a, #0e7a52, #064a31); }
+  .muted { color: var(--muted); }
+</style>
+</head>
+<body>
+<header>
+  <h1>hexbandit · visionneuse</h1>
+  <select id="games" aria-label="Partie"></select>
+  <label class="meta"><input type="file" id="file" accept=".json" multiple> ouvrir des enregistrements</label>
+  <span class="meta" id="summary"></span>
+</header>
+<main>
+  <section>
+    <div id="board-wrap">
+      <div id="drop">Déposer ici un ou plusieurs enregistrements JSON (<code>hexbandit/game-record</code>),
+        ou les choisir avec le bouton ci-dessus. <code>hexbandit view partie.json</code> produit une page
+        contenant déjà la partie.</div>
+      <svg id="board" viewBox="0 0 100 60" role="img" aria-label="Plateau" style="display:none"></svg>
+    </div>
+    <div class="controls">
+      <button id="first" title="Début (Origine)">⏮</button>
+      <button id="prev" title="Coup précédent (←)">◀</button>
+      <button id="play" title="Lecture (espace)">▶</button>
+      <button id="next" title="Coup suivant (→)">▶︎|</button>
+      <button id="last" title="Fin (Fin)">⏭</button>
+      <input type="range" id="slider" min="0" max="0" value="0" aria-label="Coup">
+      <span id="ply">-</span>
+    </div>
+    <div class="controls">
+      <span class="muted">carte de chaleur du coup suivant :</span>
+      <button data-metric="none" class="on">aucune</button>
+      <button data-metric="n">N</button>
+      <button data-metric="q">Q</button>
+      <button data-metric="q_amaf">Q̃</button>
+      <button data-metric="value">Q*</button>
+      <label class="muted"><input type="checkbox" id="numbers" checked> numéros</label>
+    </div>
+    <div class="legend" id="legend" style="display:none"><span id="legend-lo">0</span><div class="ramp"></div><span id="legend-hi">1</span></div>
+  </section>
+  <aside>
+    <div class="panel"><h2>Partie</h2><div class="kv" id="info"></div></div>
+    <div class="panel"><h2>Recherche du coup suivant</h2><div class="kv" id="search"></div></div>
+    <div class="panel"><h2>Candidats</h2><table id="cands"><thead><tr>
+      <th>coup</th><th>N</th><th>Q</th><th>Ñ</th><th>Q̃</th><th>Q*</th></tr></thead><tbody></tbody></table>
+      <p class="muted" id="cands-note"></p></div>
+  </aside>
+</main>
+<div id="tip"></div>
+<script>
+"use strict";
+// Enregistrements intégrés par `hexbandit view` (tableau JSON), sinon vide.
+const EMBEDDED = /*__HEXBANDIT_RECORDS__*/[];
+
+const COLORS = { blue: "#2a78d6", red: "#e34948" };
+const NAMES = { blue: "Bleu", red: "Rouge", draw: "nul" };
+const GAMES = { hex: "Hex", reverse_hex: "Reverse Hex", chameleon: "Chameleon" };
+const PROVEN = { win: "gagnant", loss: "perdant", draw: "nul" };
+const HEAT = ["#eef7f3", "#8fd6b9", "#1baf7a", "#0e7a52", "#064a31"];
+const R = 1 / Math.sqrt(3), STEP = Math.sqrt(3) / 2;
+const NEIGHBORS = [[-1, 0], [-1, 1], [0, 1], [1, 0], [1, -1], [0, -1]];
+
+const state = { records: [], index: 0, ply: 0, metric: "none", timer: null };
+const $ = (id) => document.getElementById(id);
+
+function parseCell(text, n) {
+  const m = /^([a-z])(\d+)$/i.exec(text.trim());
+  if (!m) throw new Error(`coup illisible : ${text}`);
+  const col = m[1].toLowerCase().charCodeAt(0) - 97, row = parseInt(m[2], 10) - 1;
+  if (row < 0 || col < 0 || row >= n || col >= n) throw new Error(`coup hors du plateau : ${text}`);
+  return [row, col];
+}
+
+function splitMove(text, chameleon) {
+  const t = text.trim().toLowerCase();
+  if (!chameleon || t === "swap") return [t, null];
+  if (t.includes(":")) { const [c, k] = t.split(":"); return [c, k.startsWith("b") ? "blue" : "red"]; }
+  return [t.slice(0, -1), t.endsWith("b") ? "blue" : "red"];
+}
+
+/** Position après `ply` coups : pierres (case → couleur) et numéros. */
+function boardAt(rec, ply) {
+  const n = rec.game.size, chameleon = rec.game.kind === "chameleon";
+  const stones = new Map(), order = new Map();
+  let toMove = rec.first_player;
+  const moves = [...(rec.opening || []).map((m) => ({ move: m, player: null })), ...rec.moves.slice(0, ply)];
+  for (const m of moves) {
+    const player = m.player || toMove;
+    const [cellText, color] = splitMove(m.move, chameleon);
+    if (cellText === "swap") {
+      const [[key, owner]] = [...stones.entries()];
+      const [r, c] = key.split(",").map(Number);
+      stones.clear(); order.clear();
+      stones.set(`${c},${r}`, chameleon ? owner : (owner === "blue" ? "red" : "blue"));
+      order.set(`${c},${r}`, 1);
+    } else {
+      const [r, c] = parseCell(cellText, n);
+      stones.set(`${r},${c}`, color || player);
+      order.set(`${r},${c}`, order.size + 1);
+    }
+    toMove = player === "blue" ? "red" : "blue";
+  }
+  return { n, stones, order, toMove, chameleon };
+}
+
+/** Plus court chemin de pierres `stone` reliant les bords du joueur `player`. */
+function path(board, player, stone) {
+  const { n, stones } = board;
+  const start = (r, c) => (player === "blue" ? c === 0 : r === 0);
+  const goal = (r, c) => (player === "blue" ? c === n - 1 : r === n - 1);
+  const prev = new Map(), queue = [];
+  for (const [key, s] of stones) {
+    const [r, c] = key.split(",").map(Number);
+    if (s === stone && start(r, c)) { prev.set(key, null); queue.push([r, c]); }
+  }
+  while (queue.length) {
+    const [r, c] = queue.shift();
+    if (goal(r, c)) {
+      const out = []; let key = `${r},${c}`;
+      while (key !== null) { out.push(key); key = prev.get(key); }
+      return out;
+    }
+    for (const [dr, dc] of NEIGHBORS) {
+      const key = `${r + dr},${c + dc}`;
+      if (!prev.has(key) && stones.get(key) === stone) { prev.set(key, `${r},${c}`); queue.push([r + dr, c + dc]); }
+    }
+  }
+  return null;
+}
+
+function winningPath(board, winner) {
+  if (!winner || winner === "draw") return null;
+  if (!board.chameleon) return path(board, winner, winner);
+  const paths = [path(board, winner, "blue"), path(board, winner, "red")].filter(Boolean);
+  return paths.length ? paths.reduce((a, b) => (a.length <= b.length ? a : b)) : null;
+}
+
+const center = (r, c) => [c + 0.5 * r, r * STEP];
+function hexPoints(r, c, scale = 0.97) {
+  const [x, y] = center(r, c);
+  return [90, 30, -30, -90, -150, 150].map((a) => {
+    const t = (a * Math.PI) / 180;
+    return `${(x + R * scale * Math.cos(t)).toFixed(4)},${(y - R * scale * Math.sin(t)).toFixed(4)}`;
+  }).join(" ");
+}
+
+function heatColor(t) {
+  const v = Math.max(0, Math.min(1, t)) * (HEAT.length - 1);
+  const i = Math.min(HEAT.length - 2, Math.floor(v)), f = v - i;
+  const a = HEAT[i].match(/\w\w/g).map((h) => parseInt(h, 16));
+  const b = HEAT[i + 1].match(/\w\w/g).map((h) => parseInt(h, 16));
+  return `rgb(${a.map((x, k) => Math.round(x + f * (b[k] - x))).join(",")})`;
+}
+
+/** Valeurs de la carte de chaleur par case (Chameleon : deux couleurs regroupées). */
+function heatValues(rec, report, metric) {
+  if (!report || !report.candidates || metric === "none") return null;
+  const n = rec.game.size, chameleon = rec.game.kind === "chameleon", out = new Map();
+  for (const c of report.candidates) {
+    const [cellText] = splitMove(c.move, chameleon);
+    if (cellText === "swap") continue;
+    let v;
+    if (metric === "n") v = c.n / Math.max(1, report.simulations + (report.reused_visits || 0));
+    else if (metric === "q") { if (!c.n) continue; v = c.q; }
+    else if (metric === "q_amaf") { if (!c.n_amaf) continue; v = c.q_amaf; }
+    else { if (c.value === null || c.value === undefined) continue; v = c.value; }
+    const [r, col] = parseCell(cellText, n), key = `${r},${col}`;
+    out.set(key, out.has(key) ? (metric === "n" ? out.get(key) + v : Math.max(out.get(key), v)) : v);
+  }
+  return out;
+}
+
+function draw() {
+  const rec = state.records[state.index];
+  const svg = $("board");
+  if (!rec) return;
+  const board = boardAt(rec, state.ply);
+  const n = board.n, final = state.ply === rec.moves.length;
+  const next = rec.moves[state.ply];
+  const report = next && next.report;
+  const heat = heatValues(rec, report, state.metric);
+  let hi = 1, lo = 0;
+  if (heat && heat.size) {
+    const values = [...heat.values()];
+    if (state.metric === "n") hi = Math.max(...values) || 1;
+    else { lo = Math.min(...values); hi = Math.max(...values); if (hi - lo < 1e-6) { lo -= 0.5; hi += 0.5; } }
+  }
+  const win = final ? winningPath(board, rec.winner) : null;
+  const onPath = new Set(win || []);
+  const [x0] = center(0, 0), [x1] = center(n - 1, n - 1);
+  const pad = 1.6, width = x1 - x0 + 2 * pad, height = (n - 1) * STEP + 2 * pad;
+  svg.setAttribute("viewBox", `${x0 - pad} ${-pad} ${width} ${height}`);
+  const parts = [];
+  // Bords : Ouest et Est bleus, Nord et Sud rouges.
+  const corners = [center(0, 0), center(0, n - 1), center(n - 1, n - 1), center(n - 1, 0)];
+  const mid = corners.reduce((a, p) => [a[0] + p[0] / 4, a[1] + p[1] / 4], [0, 0]);
+  const push = ([x, y], k) => { const dx = x - mid[0], dy = y - mid[1], d = Math.hypot(dx, dy); return [x + (dx / d) * k, y + (dy / d) * k]; };
+  const sides = [[0, 1, "red"], [1, 2, "blue"], [2, 3, "red"], [3, 0, "blue"]];
+  for (const [a, b, color] of sides) {
+    const p = [corners[a], corners[b], push(corners[b], 1.25), push(corners[a], 1.25)];
+    parts.push(`<polygon points="${p.map((q) => q.join(",")).join(" ")}" fill="${COLORS[color]}" opacity="0.9"/>`);
+  }
+  const font = 0.42;
+  for (let r = 0; r < n; r++) {
+    for (let c = 0; c < n; c++) {
+      const key = `${r},${c}`, stone = board.stones.get(key);
+      let fill = "var(--empty)";
+      if (stone) fill = COLORS[stone];
+      else if (heat && heat.has(key)) fill = heatColor((heat.get(key) - lo) / (hi - lo));
+      const edge = onPath.has(key) ? "#0b0b0b" : "#c3c2b7", w = onPath.has(key) ? 0.08 : 0.03;
+      parts.push(`<polygon class="cell" data-key="${key}" points="${hexPoints(r, c)}" fill="${fill}" stroke="${edge}" stroke-width="${w}"/>`);
+      const [x, y] = center(r, c);
+      if (stone && $("numbers").checked && board.order.has(key)) {
+        parts.push(`<text x="${x}" y="${y + font * 0.36}" font-size="${font}" text-anchor="middle" fill="#fff" pointer-events="none">${board.order.get(key)}</text>`);
+      }
+    }
+  }
+  if (next && !final) {
+    const [cellText] = splitMove(next.move, board.chameleon);
+    if (cellText !== "swap") {
+      const [r, c] = parseCell(cellText, n), [x, y] = center(r, c);
+      parts.push(`<circle cx="${x}" cy="${y}" r="${R * 0.55}" fill="none" stroke="#0b0b0b" stroke-width="0.07" stroke-dasharray="0.12 0.08" pointer-events="none"/>`);
+    }
+  }
+  for (let i = 0; i < n; i++) {
+    const letter = String.fromCharCode(97 + i);
+    let [x, y] = center(0, i); parts.push(`<text x="${x}" y="${y - 0.95}" font-size="${font}" text-anchor="middle" fill="#52514e">${letter}</text>`);
+    [x, y] = center(n - 1, i); parts.push(`<text x="${x}" y="${y + 1.25}" font-size="${font}" text-anchor="middle" fill="#52514e">${letter}</text>`);
+    [x, y] = center(i, 0); parts.push(`<text x="${x - 1.05}" y="${y + 0.15}" font-size="${font}" text-anchor="middle" fill="#52514e">${i + 1}</text>`);
+    [x, y] = center(i, n - 1); parts.push(`<text x="${x + 1.05}" y="${y + 0.15}" font-size="${font}" text-anchor="middle" fill="#52514e">${i + 1}</text>`);
+  }
+  svg.innerHTML = parts.join("");
+  svg.style.display = "block";
+  $("drop").style.display = "none";
+  $("legend").style.display = heat && heat.size ? "flex" : "none";
+  $("legend-lo").textContent = state.metric === "n" ? "0" : lo.toFixed(2);
+  $("legend-hi").textContent = state.metric === "n" ? `${(hi * 100).toFixed(1)} %` : hi.toFixed(2);
+  $("slider").max = rec.moves.length; $("slider").value = state.ply;
+  $("ply").textContent = `coup ${state.ply} / ${rec.moves.length}`;
+  drawPanels(rec, board, report, next, final);
+  attachTips(rec, report);
+}
+
+function kv(el, pairs) {
+  el.innerHTML = pairs.map(([k, v]) => `<span>${k}</span><span>${v}</span>`).join("");
+}
+
+function playerLabel(rec, color) {
+  const p = rec.players[color] || {};
+  const opts = ["solver", "reuse_tree", "grave_ref", "trees", "prior"].filter((k) => p[k]).map((k) => (k === "prior" ? `prior ${p.prior.kind}` : k === "grave_ref" ? `GRAVE ${p.grave_ref}` : k === "trees" ? `${p.trees} arbres` : k === "reuse_tree" ? "réutilisation" : "solveur"));
+  return `<b style="color:${COLORS[color]}">${p.label || p.algorithm || "?"}</b>${opts.length ? ` <span class="muted">(${opts.join(", ")})</span>` : ""}`;
+}
+
+function drawPanels(rec, board, report, next, final) {
+  const g = rec.game;
+  kv($("info"), [
+    ["jeu", `${GAMES[g.kind] || g.kind} ${g.size}×${g.size}${g.swap ? " · règle du gâteau" : ""}`],
+    ["Bleu (Ouest-Est)", playerLabel(rec, "blue")],
+    ["Rouge (Nord-Sud)", playerLabel(rec, "red")],
+    ["commence", NAMES[rec.first_player]],
+    ["résultat", rec.winner ? `${NAMES[rec.winner]} en ${rec.num_moves} coups` : "-"],
+    ["graine", rec.seed],
+  ]);
+  if (final || !next) {
+    kv($("search"), [["", "partie terminée"]]);
+  } else if (!report) {
+    kv($("search"), [["trait", NAMES[next.player]], ["coup", next.move], ["", "pas de rapport (report = none)"]]);
+  } else {
+    const rows = [
+      ["trait", `${NAMES[next.player]} joue <b>${next.move}</b>`],
+      ["simulations", report.simulations.toLocaleString("fr-FR") + (report.reused_visits ? ` (+ ${report.reused_visits.toLocaleString("fr-FR")} réutilisées)` : "")],
+      ["nœuds", report.nodes.toLocaleString("fr-FR")],
+      ["valeur racine", report.root_value.toFixed(3)],
+      ["profondeur", `${report.mean_depth.toFixed(1)} en moyenne, ${report.max_depth} au plus`],
+    ];
+    if (report.proven) rows.push(["position", `<span class="tag ${report.proven}">prouvée ${PROVEN[report.proven]}e</span>`]);
+    kv($("search"), rows);
+  }
+  const body = $("cands").querySelector("tbody");
+  const cands = (report && report.candidates) || [];
+  const fmt = (v) => (v === null || v === undefined ? "-" : v.toFixed(3));
+  body.innerHTML = cands.slice(0, 14).map((c) => `<tr class="${next && c.move === next.move ? "played" : ""}"><td>${c.move}${c.proven ? ` <span class="tag ${c.proven}">${PROVEN[c.proven]}</span>` : ""}</td><td>${c.n}</td><td>${c.n ? fmt(c.q) : "-"}</td><td>${c.n_amaf}</td><td>${c.n_amaf ? fmt(c.q_amaf) : "-"}</td><td>${fmt(c.value)}</td></tr>`).join("");
+  $("cands-note").textContent = cands.length ? `${cands.length} coups légaux ; en gras, le coup joué.` : "Rapports complets (report = \"full\") nécessaires.";
+}
+
+function attachTips(rec, report) {
+  const tip = $("tip");
+  const byCell = new Map();
+  if (report && report.candidates) {
+    for (const c of report.candidates) {
+      const [cellText] = splitMove(c.move, rec.game.kind === "chameleon");
+      if (cellText === "swap") continue;
+      const [r, col] = parseCell(cellText, rec.game.size), key = `${r},${col}`;
+      (byCell.get(key) || byCell.set(key, []).get(key)).push(c);
+    }
+  }
+  for (const el of document.querySelectorAll("#board .cell")) {
+    el.addEventListener("mousemove", (e) => {
+      const list = byCell.get(el.dataset.key);
+      if (!list) { tip.style.display = "none"; return; }
+      tip.textContent = list.map((c) => `${c.move}  N=${c.n}  Q=${c.q.toFixed(3)}  Ñ=${c.n_amaf}  Q̃=${c.q_amaf.toFixed(3)}  Q*=${c.value === null ? "-" : c.value.toFixed(3)}${c.proven ? "  " + PROVEN[c.proven] : ""}`).join("\n");
+      tip.style.display = "block"; tip.style.left = `${e.clientX + 14}px`; tip.style.top = `${e.clientY + 10}px`;
+    });
+    el.addEventListener("mouseleave", () => { tip.style.display = "none"; });
+  }
+}
+
+function setPly(p) {
+  const rec = state.records[state.index];
+  if (!rec) return;
+  state.ply = Math.max(0, Math.min(rec.moves.length, p));
+  draw();
+}
+
+function togglePlay() {
+  if (state.timer) { clearInterval(state.timer); state.timer = null; $("play").classList.remove("on"); return; }
+  const rec = state.records[state.index];
+  if (rec && state.ply >= rec.moves.length) state.ply = 0;
+  $("play").classList.add("on");
+  state.timer = setInterval(() => {
+    const r = state.records[state.index];
+    if (!r || state.ply >= r.moves.length) { togglePlay(); return; }
+    setPly(state.ply + 1);
+  }, 450);
+}
+
+function load(records) {
+  const ok = records.filter((r) => r && r.format === "hexbandit/game-record");
+  const supported = ok.filter((r) => ["hex", "reverse_hex", "chameleon"].includes(r.game.kind));
+  state.records.push(...supported);
+  const select = $("games");
+  select.innerHTML = state.records.map((r, i) => `<option value="${i}">${i + 1}. ${GAMES[r.game.kind] || r.game.kind} ${r.game.size}×${r.game.size} · ${(r.players.blue || {}).label} - ${(r.players.red || {}).label} · ${NAMES[r.winner] || "?"}</option>`).join("");
+  $("summary").textContent = `${state.records.length} partie(s)` + (ok.length > supported.length ? ` · ${ok.length - supported.length} ignorée(s) (Quarto non affiché)` : "");
+  if (state.records.length) { state.index = state.records.length - supported.length; select.value = state.index; setPly(0); }
+}
+
+function readFiles(files) {
+  for (const f of files) {
+    f.text().then((t) => {
+      const data = JSON.parse(t);
+      load(Array.isArray(data) ? data : data.records || [data]);
+    }).catch((e) => alert(`${f.name} : ${e.message}`));
+  }
+}
+
+$("file").addEventListener("change", (e) => readFiles(e.target.files));
+const drop = $("board-wrap");
+drop.addEventListener("dragover", (e) => { e.preventDefault(); $("drop").classList.add("over"); });
+drop.addEventListener("dragleave", () => $("drop").classList.remove("over"));
+drop.addEventListener("drop", (e) => { e.preventDefault(); $("drop").classList.remove("over"); readFiles(e.dataTransfer.files); });
+$("games").addEventListener("change", (e) => { state.index = Number(e.target.value); setPly(0); });
+$("first").onclick = () => setPly(0);
+$("prev").onclick = () => setPly(state.ply - 1);
+$("next").onclick = () => setPly(state.ply + 1);
+$("last").onclick = () => { const r = state.records[state.index]; if (r) setPly(r.moves.length); };
+$("play").onclick = togglePlay;
+$("slider").oninput = (e) => setPly(Number(e.target.value));
+$("numbers").onchange = draw;
+for (const b of document.querySelectorAll("[data-metric]")) {
+  b.onclick = () => {
+    state.metric = b.dataset.metric;
+    for (const o of document.querySelectorAll("[data-metric]")) o.classList.toggle("on", o === b);
+    draw();
+  };
+}
+document.addEventListener("keydown", (e) => {
+  if (e.target.tagName === "INPUT" || e.target.tagName === "SELECT") return;
+  if (e.key === "ArrowRight") setPly(state.ply + 1);
+  else if (e.key === "ArrowLeft") setPly(state.ply - 1);
+  else if (e.key === "Home") setPly(0);
+  else if (e.key === "End") { const r = state.records[state.index]; if (r) setPly(r.moves.length); }
+  else if (e.key === " ") { e.preventDefault(); togglePlay(); }
+});
+load(EMBEDDED);
+</script>
+</body>
+</html>

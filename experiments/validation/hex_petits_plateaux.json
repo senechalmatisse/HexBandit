@@ -1,0 +1,74 @@
+[
+ {
+  "size": 3,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "games": 40,
+  "wins_a": 40,
+  "rate_a": 1.0,
+  "ci_low": 0.9123783988027135,
+  "ci_high": 1.0,
+  "p_value_greater": 9.094947017729282e-13,
+  "p_value_two_sided": 1.8189894035458565e-12,
+  "first_player_wins": 40,
+  "seconds": 1.247836811000525,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 6003
+ },
+ {
+  "size": 4,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "games": 40,
+  "wins_a": 40,
+  "rate_a": 1.0,
+  "ci_low": 0.9123783988027135,
+  "ci_high": 1.0,
+  "p_value_greater": 9.094947017729282e-13,
+  "p_value_two_sided": 1.8189894035458565e-12,
+  "first_player_wins": 40,
+  "seconds": 3.631758896000065,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 6004
+ },
+ {
+  "size": 5,
+  "a": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "b": {
+   "algorithm": "rave",
+   "simulations": 20000,
+   "label": "rave-20000"
+  },
+  "games": 40,
+  "wins_a": 40,
+  "rate_a": 1.0,
+  "ci_low": 0.9123783988027135,
+  "ci_high": 1.0,
+  "p_value_greater": 9.094947017729282e-13,
+  "p_value_two_sided": 1.8189894035458565e-12,
+  "first_player_wins": 40,
+  "seconds": 10.77647533199979,
+  "seating": "a_first_alternate_colors",
+  "master_seed": 6005
+ }
+]

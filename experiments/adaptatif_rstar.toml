@@ -1,0 +1,28 @@
+# Étude : ratio d'équilibre r* estimé par un plan adaptatif, pour les groupes de la campagne réduite et le groupe B0 = 2048
+# en 14 × 14. Objectif : intervalle de crédibilité à 95 % de log2 r* plus étroit que 0,2 (r* à ± 7 % environ),
+# au plus 2 000 parties par groupe, contre 1 800 à 3 600 parties par groupe pour la grille fixe.
+# Commande : hexbandit adaptive experiments/adaptatif_rstar.toml --results results/adaptatif --compare results/complete
+
+[campaign]
+name = "rstar-adaptatif"
+master_seed = 20261121
+threads = 2
+
+[adaptive]
+sizes = [5, 7, 9, 11, 14]
+base_budgets = [256, 2048]
+algorithms = ["uct", "rave"]
+batch = 40
+max_games = 2000
+min_steps = 4
+target_width = 0.2
+x_min = -5.0
+x_max = 3.0
+
+[players.uct]
+algorithm = "uct"
+exploration = 0.25
+
+[players.rave]
+algorithm = "rave"
+beta = { schedule = "mse", bias = 0.02 }

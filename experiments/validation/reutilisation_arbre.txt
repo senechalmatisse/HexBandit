@@ -1,0 +1,2 @@
+9x9   : 207 coups ; visites reutilisees / budget : moyenne 0.080, quartiles 0.006 0.057 0.123, maximum 0.386
+14x14 : 504 coups ; visites reutilisees / budget : moyenne 0.052, quartiles 0.000 0.004 0.088, maximum 0.590

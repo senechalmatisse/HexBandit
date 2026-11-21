@@ -1,0 +1,30 @@
+uct_B256_N05_k+2 parties 0-99 :     identiques
+rave_B256_N09_k+0 parties 300-399 : identiques
+rave_B256_N11_k-3 parties 100-199 : identiques
+rave_B256_N11_k-2 parties 200-299 : identiques
+rave_B256_N14_k-2 parties 100-199 : identiques
+uct_B2048_N09_k+0 parties 0-99 :    identiques
+6/6 tranches identiques
+
+moteur 1.0.0 : rejouées avec 1 thread.
+
+Tranches versionnées pour la CI (experiments/verification/reduite) :
+uct_B256_N05_k+0 parties 0-99 :     identiques
+rave_B256_N05_k-2 parties 0-99 :    identiques
+uct_B256_N07_k+1 parties 0-99 :     identiques
+rave_B256_N07_k-1 parties 100-199 : identiques
+uct_B256_N09_k+0 parties 0-99 :     identiques
+rave_B256_N09_k+1 parties 200-299 : identiques
+6/6 tranches identiques
+
+Campagne complète (results/complete, tranches lues dans results/reduite) :
+rave_B2048_N07_k+4 parties 0-99 :  identiques
+rave_B2048_N09_k+4 parties 0-99 :  identiques
+uct_B256_N05_k-3 parties 100-199 : identiques
+uct_B256_N11_k-1 parties 100-199 : identiques
+4/4 tranches identiques
+
+Cellules ajoutées (B0 = 2 048 en 14 x 14) :
+uct_B2048_N14_k-3 parties 0-99 :     identiques
+rave_B2048_N14_k+0 parties 100-199 : identiques
+2/2 tranches identiques
